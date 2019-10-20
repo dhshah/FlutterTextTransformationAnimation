@@ -14,23 +14,24 @@ import 'package:flutter/widgets.dart';
 /// If the text changes from 'd' to 'a', the lerp will lerp through d b c a.
 ///
 /// This widget looks best when used with a monospace font.
-class TransformTextWithAlphabet extends ImplicitlyAnimatedWidget {
+class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
   final String text;
   final Duration duration;
 
   /// Defaults to symbols on the US Keyboard, can be overridden to contain all a
   /// custom set of alphabets.
-  Map<String, int> _alphabetToPosition;
-  Map<int, String> _positionToAlphabet;
+  final Map<String, int> _alphabetToPosition;
+  final Map<int, String> _positionToAlphabet;
 
-  TransformTextWithAlphabet(
+  TextTransformationAnimation(
       {@required this.text,
       @required this.duration,
       String alphabet =
           "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#\$%^&*()_+-={}[]:\";',./<>?`~|\\",
       Key key})
-      : super(key: key, duration: duration) {
-    this._alphabetToPosition = Map<String, int>();
+      : this._alphabetToPosition = Map<String, int>(),
+        this._positionToAlphabet = Map<int, String>(),
+        super(key: key, duration: duration) {
     for (int i = 0; i < alphabet.length; i++) {
       if (_alphabetToPosition.containsKey(alphabet[i])) {
         throw new FormatException(
@@ -43,12 +44,12 @@ class TransformTextWithAlphabet extends ImplicitlyAnimatedWidget {
 
   @override
   ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() {
-    return TransformTextWithAlphabetState();
+    return TextTransformationAnimationState();
   }
 }
 
-class TransformTextWithAlphabetState
-    extends AnimatedWidgetBaseState<TransformTextWithAlphabet> {
+class TextTransformationAnimationState
+    extends AnimatedWidgetBaseState<TextTransformationAnimation> {
   TransformTextTween _transformTextTween;
 
   @override

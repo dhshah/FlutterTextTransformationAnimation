@@ -1,8 +1,8 @@
-name: flutter_text_transformation_animation_widget
+name: text_transformation_animation_widget
 description: A text transformation animation.
 version: 0.0.1
-author:
-homepage:
+author: dhshah
+homepage: https://github.com/dhshah/FlutterTextTransformationAnimationWidget
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
