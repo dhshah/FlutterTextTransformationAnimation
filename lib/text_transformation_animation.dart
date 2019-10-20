@@ -61,7 +61,7 @@ class TextTransformationAnimationState
 
   @override
   void forEachTween(visitor) {
-    visitor(
+    _transformTextTween = visitor(
       _transformTextTween,
       widget.text,
       (value) => TransformTextTween(
