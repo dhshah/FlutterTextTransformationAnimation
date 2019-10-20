@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 2019-10-20
 
-* TODO: Describe initial release.
+* Initial release of the widget. Supports transforming strings from one to another.
