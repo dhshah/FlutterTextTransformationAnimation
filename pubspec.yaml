@@ -1,7 +1,7 @@
-name: text_transformation_animation_widget
+name: text_transformation_animation
 description: A text transformation animation.
 version: 0.0.1
-author: dhshah
+author: dhshah darshanshah230@gmail.com
 homepage: https://github.com/dhshah/FlutterTextTransformationAnimationWidget
 
 environment:

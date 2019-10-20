@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:text_animation/text_transformation_animation.dart';
+import 'package:text_transformation_animation/text_transformation_animation.dart';
 
 void main() {
   group('_TextTransformationTween', () {
