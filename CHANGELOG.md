@@ -1,6 +1,7 @@
-## [0.1.1] - 2019-10-20
+## [0.1.2] - 2019-10-20
 * Added passing in text style to the component.
 * Added widget test
+* Add example gif and code.
 
 
 ## [0.0.1] - 2019-10-20
