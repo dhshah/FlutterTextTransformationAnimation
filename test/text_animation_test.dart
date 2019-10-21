@@ -1,7 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:text_transformation_animation/text_transformation_animation.dart';
 
 void main() {
+  group('_TextTransformationWidget', () {
+    testWidgets('widget renders', (WidgetTester tester) async {
+      Key buttonKey = GlobalKey();
+      String text = "Hello";
+      Widget widget = MaterialApp(home: Scaffold(
+        body: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+          return ListView(children: [
+            TextTransformationAnimation(
+                text: text, duration: Duration(milliseconds: 1000)),
+            ListTile(
+                key: buttonKey,
+                title: Icon(Icons.restaurant),
+                onTap: () {
+                  setState(() => text = "Bye");
+                })
+          ]);
+        }),
+      ));
+      await tester.pumpWidget(widget);
+      expect(find.text("Hello"), findsOneWidget);
+      expect(find.byKey(buttonKey), findsOneWidget);
+      await tester.tap(find.byKey(buttonKey));
+      await tester.pump();
+      await tester.pumpAndSettle();
+      expect(find.text("Bye"), findsOneWidget);
+    });
+  });
+
   group('_TextTransformationTween', () {
     test('interpolates text correctly', () {
       TransformTextTween tween = TransformTextTween(

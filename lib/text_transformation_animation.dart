@@ -17,6 +17,7 @@ import 'package:flutter/widgets.dart';
 class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
   final String text;
   final Duration duration;
+  final TextStyle style;
 
   /// Defaults to symbols on the US Keyboard, can be overridden to contain all a
   /// custom set of alphabets.
@@ -26,6 +27,7 @@ class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
   TextTransformationAnimation(
       {@required this.text,
       @required this.duration,
+      this.style,
       String alphabet =
           "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#\$%^&*()_+-={}[]:\";',./<>?`~|\\",
       Key key})
@@ -54,9 +56,12 @@ class TextTransformationAnimationState
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '${_transformTextTween.evaluate(animation)}',
-    );
+    return widget.style == null
+        ? Text('${_transformTextTween.evaluate(animation)}')
+        : Text(
+            '${_transformTextTween.evaluate(animation)}',
+            style: widget.style,
+          );
   }
 
   @override
