@@ -1,3 +1,6 @@
+## [0.1.3] - 2019-10-27
+* Adds overflow and text align attributes.
+
 ## [0.1.2] - 2019-10-20
 * Added passing in text style to the component.
 * Added widget test
