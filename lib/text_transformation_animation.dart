@@ -17,9 +17,9 @@ import 'package:flutter/widgets.dart';
 class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
   final String text;
   final Duration duration;
-  final TextStyle style;
-  final TextOverflow overflow; 
-  final TextAlign textAlign;
+  final TextStyle? style;
+  final TextOverflow? overflow;
+  final TextAlign? textAlign;
     
 
 
@@ -29,14 +29,14 @@ class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
   final Map<int, String> _positionToAlphabet;
 
   TextTransformationAnimation(
-      {@required this.text,
-      @required this.duration,
+      { required this.text,
+       required this.duration,
       this.style,
       this.overflow,
       this.textAlign,
       String alphabet =
           "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#\$%^&*()_+-={}[]:\";',./<>?`~|\\",
-      Key key})
+      Key? key})
       : this._alphabetToPosition = Map<String, int>(),
         this._positionToAlphabet = Map<int, String>(),
         super(key: key, duration: duration) {
@@ -58,14 +58,14 @@ class TextTransformationAnimation extends ImplicitlyAnimatedWidget {
 
 class TextTransformationAnimationState
     extends AnimatedWidgetBaseState<TextTransformationAnimation> {
-  TransformTextTween _transformTextTween;
+  TransformTextTween? _transformTextTween;
 
   @override
   Widget build(BuildContext context) {
     return widget.style == null
-        ? Text('${_transformTextTween.evaluate(animation)}')
+        ? Text('${_transformTextTween!.evaluate(animation)}')
         : Text(
-            '${_transformTextTween.evaluate(animation)}',
+            '${_transformTextTween!.evaluate(animation)}',
             overflow: widget.overflow,
             textAlign: widget.textAlign,
             style: widget.style,
@@ -81,7 +81,7 @@ class TextTransformationAnimationState
           begin: value,
           alphabetToPosition: widget._alphabetToPosition,
           positionToAlphabet: widget._positionToAlphabet),
-    );
+    ) as TransformTextTween?;
   }
 }
 
@@ -91,32 +91,31 @@ class TransformTextTween extends Tween<String> {
   static Random _random = Random();
 
   TransformTextTween(
-      {String begin,
-      String end,
-      @required this.alphabetToPosition,
-      @required this.positionToAlphabet})
+      {String? begin, String? end,
+        required this.alphabetToPosition,
+        required this.positionToAlphabet})
       : super(begin: begin, end: end);
 
   String lerp(double t) {
     var strBuilder = StringBuffer();
     int strLen;
-    if (begin.length <= end.length) {
-      strLen = begin.length + ((end.length - begin.length) * t).round();
+    if (begin!.length <= end!.length) {
+      strLen = begin!.length + ((end!.length - begin!.length) * t).round();
     } else {
-      strLen = begin.length - ((begin.length - end.length) * t).round();
+      strLen = begin!.length - ((begin!.length - end!.length) * t).round();
     }
     for (int i = 0; i < strLen; i++) {
-      if (begin.length > i) {
+      if (begin!.length > i) {
         strBuilder.write(positionToAlphabet[lerpDouble(
-                alphabetToPosition[begin[i]],
-                end.length > i
-                    ? alphabetToPosition[end[i]]
+                alphabetToPosition[begin![i]],
+                end!.length > i
+                    ? alphabetToPosition[end![i]]
                     : _random.nextInt(alphabetToPosition.length),
                 t)
-            .round()]);
+            !.round()]);
       } else {
         strBuilder.write(t == 1
-            ? end[i]
+            ? end![i]
             : positionToAlphabet[_random.nextInt(alphabetToPosition.length)]);
       }
     }

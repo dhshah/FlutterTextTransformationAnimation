@@ -1,3 +1,6 @@
+## [0.1.4] - 2022-03-28
+* Updates for Flutter 2.10
+
 ## [0.1.3] - 2019-10-27
 * Adds overflow and text align attributes.
 

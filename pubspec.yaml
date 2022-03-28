@@ -1,11 +1,10 @@
 name: text_transformation_animation
 description: A text transformation animation.
 version: 0.1.3
-author: dhshah <darshanshah230@gmail.com>
 homepage: https://github.com/dhshah/FlutterTextTransformationAnimationWidget
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
